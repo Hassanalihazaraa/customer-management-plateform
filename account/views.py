@@ -2,12 +2,12 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, 'accounts/dashboard.html')
+    return render(request, 'account/dashboard.html')
 
 
 def products(request):
-    return render(request, 'accounts/products.html')
+    return render(request, 'account/products.html')
 
 
 def customers(request):
-    return render(request, 'accounts/customers.html')
+    return render(request, 'account/customers.html')
