@@ -1,5 +1,6 @@
 from account.models import Customer, Order, Product
 from django.shortcuts import render
+from .forms import OrderForm
 
 
 def home(request):
@@ -38,3 +39,13 @@ def customers(request, pk):
         'total_orders': total_orders,
     }
     return render(request, 'account/customers.html', context)
+
+
+def createOrder(request):
+    form = OrderForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'account/order_form.html', context)
