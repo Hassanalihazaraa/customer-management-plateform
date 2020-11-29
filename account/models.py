@@ -24,6 +24,13 @@ class Product(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=200, null=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+
 class Order(models.Model):
     STATUS = (
         ('Pending', 'Pending'),
