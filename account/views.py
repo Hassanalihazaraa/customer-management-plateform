@@ -41,8 +41,9 @@ def customers(request, pk):
     return render(request, 'account/customers.html', context)
 
 
-def createOrder(request):
-    form = OrderForm()
+def createOrder(request, pk):
+    customer = Customer.objects.get(id=pk)
+    form = OrderForm(initial={'customer': customer})
 
     if request.method == 'POST':
         form = OrderForm(request.POST)

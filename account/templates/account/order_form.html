@@ -3,15 +3,15 @@
 
 {% block content%}
 
-<div class="row">
-	<div class="col-md-6">
-		<div class="card card-body">
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{form}}
-                <input class="btn btn-sm btn-info" type="submit" name="submit">
-            </form>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-body">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{form}}
+                    <input class="btn btn-sm btn-info" type="submit" name="submit">
+                </form>
+            </div>
         </div>
     </div>
-</div>
 {% endblock%}
