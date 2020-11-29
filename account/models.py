@@ -12,8 +12,24 @@ class Customer(models.Model):
 
 
 class Product(models.Model):
+    CATEGORY = (
+        ('Indoor', 'Indoor'),
+        ('Out door', 'Out door'),
+    )
     name = models.CharField(max_length=200, null=True)
     price = models.FloatField(null=True)
-    category = models.CharField(max_length=200, null=True)
+    category = models.CharField(max_length=200, null=True, choices=CATEGORY)
     description = models.CharField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+
+class Order(models.Model):
+    STATUS = (
+        ('Pending', 'Pending'),
+        ('Out for delivery', 'Out for delivery'),
+        ('Delivered', 'Delivered'),
+    )
+    # customer =
+    # product =
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+    status = models.CharField(max_length=200, null=True, choices=STATUS)
