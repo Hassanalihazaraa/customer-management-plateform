@@ -1,5 +1,5 @@
 from account.models import Customer, Order, Product
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import OrderForm
 
 
@@ -43,6 +43,12 @@ def customers(request, pk):
 
 def createOrder(request):
     form = OrderForm()
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
 
     context = {
         'form': form
