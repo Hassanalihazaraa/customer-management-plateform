@@ -12,6 +12,13 @@ def register(request):
     return render(request, 'account/register.html', context)
 
 
+def login(request):
+    context = {
+
+    }
+    return render(request, 'account/login.html', context)
+
+
 def home(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
