@@ -1,10 +1,7 @@
-from collections import namedtuple
-from account.decorators import unauthenticated_user
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.forms import inlineformset_factory
-from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
@@ -71,6 +68,11 @@ def home(request):
         'pending': pending,
     }
     return render(request, 'account/dashboard.html', context)
+
+
+def userPage(request):
+    context = {}
+    return render(request, 'account/user.html', context)
 
 
 @login_required(login_url='login')
