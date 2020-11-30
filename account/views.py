@@ -5,6 +5,13 @@ from django.forms import inlineformset_factory
 from .filters import OrderFilter
 
 
+def register(request):
+    context = {
+
+    }
+    return render(request, 'account/register.html', context)
+
+
 def home(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
