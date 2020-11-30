@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import OrderForm, CreateUserForm
 from .filters import OrderFilter
-from .decorators import unauthenticated_user, allowed_users
+from .decorators import unauthenticated_user, allowed_users, admin_only
 
 
 @unauthenticated_user
@@ -51,7 +51,7 @@ def logoutUser(request):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
+@admin_only
 def home(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
