@@ -1,13 +1,21 @@
-from .models import *
 from django.shortcuts import render, redirect
-from .forms import OrderForm
 from django.forms import inlineformset_factory
+
+from .models import *
+from .forms import OrderForm, CreateUserForm
 from .filters import OrderFilter
 
 
 def register(request):
-    context = {
+    form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
 
+    context = {
+        'form': form,
     }
     return render(request, 'account/register.html', context)
 
