@@ -1,10 +1,9 @@
-from account.views import register
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('register/', views.register, name='register'),
-    path('login/', views.loginUser, name='login'),
+    path('register/', views.registerPage, name='register'),
+    path('login/', views.loginPage, name='login'),
     path('logout/', views.logoutUser, name='logout'),
     path('', views.home, name='home'),
     path('products/', views.products, name='products'),

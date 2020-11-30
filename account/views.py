@@ -1,3 +1,4 @@
+from account.decorators import unauthenticated_user
 from django.shortcuts import render, redirect
 from django.forms import inlineformset_factory
 from django.contrib import messages
@@ -7,9 +8,11 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import OrderForm, CreateUserForm
 from .filters import OrderFilter
+from .decorators import unauthenticated_user
 
 
-def register(request):
+@unauthenticated_user
+def registerPage(request):
     form = CreateUserForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
@@ -17,28 +20,28 @@ def register(request):
             form.save()
             user = form.cleaned_data.get('username')
             messages.success(request, 'Account was created for ' + user)
+
             return redirect('login')
 
-    context = {
-        'form': form,
-    }
+    context = {'form': form}
     return render(request, 'account/register.html', context)
 
 
-def loginUser(request):
+@unauthenticated_user
+def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
 
         user = authenticate(request, username=username, password=password)
+
         if user is not None:
             login(request, user)
             return redirect('home')
         else:
-            messages.info(request, 'Username or Password is incorrect!')
-    context = {
-    }
-    return render(request, 'account/login.html', context)
+            messages.info(request, 'Username or password is incorrect')
+
+    return render(request, 'account/login.html')
 
 
 def logoutUser(request):
